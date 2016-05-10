@@ -61,6 +61,6 @@ public class ValidAnagrams {
      if(obj.isAnagram("Anagram","Nagaram"))
        System.out.println("Yes the input strings are valid anagrams");
      else
-              System.out.println("No the input strings are not valid anagrams");
+       System.out.println("No the input strings are not valid anagrams");
 }
 }
