@@ -1,0 +1,66 @@
+import java.util.*;
+/**
+ * ClassName   :ValidAnagrams
+ * Description :The purpose of this class is to check whether any
+ *              two given input strings are valid anagrams or not
+ * Author      :Manasa Elapakurthi
+ */
+public class ValidAnagrams {
+  
+/**
+ * Compares two Strings to check if they have the set of .
+ * characters.
+ * @param  s the first string to compare
+ * @param  t the second string to compare
+ * @return boolean value true if {@code s set of characters == t set of characters};
+ *         else false
+ */
+    public boolean isAnagram(String s, String t) {
+     HashMap<Character,Integer> hm = new HashMap<Character,Integer>();
+     boolean flag = true;
+     char[] ch = s.toCharArray();
+     char keyChar;
+      if(s == null || t == null)
+       return false;
+      if((s != null && t != null) && (s.length() == t.length())){
+        int i=0;
+        while(i <= ch.length-1){
+          keyChar = Character.toLowerCase(ch[i]);
+          if(hm.containsKey(keyChar))
+            hm.put(keyChar,hm.get(keyChar)+1);
+          else
+            hm.put(keyChar,1);
+          ++i;
+        }
+        
+        for(i=0;i<t.length();i++){
+          keyChar = Character.toLowerCase(t.charAt(i));
+          if(hm.containsKey(keyChar)){
+           int count = hm.get(keyChar);
+           if(count > 0)
+            hm.put(keyChar,--count);
+            else {
+            flag = false;
+            break;
+            }
+          }
+          else{
+              flag = false;
+              break;
+          }
+        }
+      }
+      else
+       flag = false;
+       
+      return flag;
+    }
+
+    public static void main(String args[]){
+     ValidAnagrams obj = new ValidAnagrams();
+     if(obj.isAnagram("Anagram","Nagaram"))
+       System.out.println("Yes the input strings are valid anagrams");
+     else
+              System.out.println("No the input strings are not valid anagrams");
+}
+}
